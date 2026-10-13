@@ -1,0 +1,16 @@
+title,description,category,priority
+Wi-Fi unavailable,Office laptop cannot connect to company Wi-Fi,Network,Medium
+Network outage,Internet is down for all employees,Network,High
+Slow connection,Network connection is slow,Network,Low
+Password reset,Employee forgot the account password,Account,Low
+Locked account,Account locked after incorrect login attempts,Account,Medium
+Login failure,Employee cannot log in to the account,Account,High
+Payment failed,Customer payment did not complete,Payment,Medium
+Duplicate charge,Customer was charged twice for one purchase,Payment,High
+Refund status,Customer asks for refund progress,Payment,Low
+Laptop issue,Laptop does not turn on,Hardware,High
+Keyboard problem,Some keyboard keys are not working,Hardware,Medium
+Battery question,Customer asks how to check battery health,Hardware,Low
+App crash,Application closes unexpectedly,Software,Medium
+Installation error,Software installation failed,Software,High
+Update question,Customer asks how to update an application,Software,Low

@@ -1,0 +1,13 @@
+id,question,answer,category
+1,"How do I reset my password?","Use the approved company password reset portal. Verify your identity and follow the prompts. Never share your password with anyone.","Account"
+2,"My account is locked. What should I do?","Contact the IT help desk to verify your identity and request an account unlock.","Account"
+3,"My Wi-Fi keeps disconnecting.","Check that Wi-Fi is enabled and airplane mode is off. Reconnect to the correct network. Restart your device if needed.","Network"
+4,"I have no internet connection.","Check your Wi-Fi or Ethernet connection. Test another website and restart your device if appropriate. Report a possible office-wide outage to IT.","Network"
+5,"How do I connect to the company VPN?","Open the approved VPN application and sign in using your company account and required multi-factor authentication. Contact IT if the connection fails.","Network"
+6,"My email is not syncing.","Check your internet connection, restart the email application, and verify your account sign-in. Contact IT if the problem continues.","Email"
+7,"The printer is not printing.","Check the printer power and paper. Confirm the correct printer is selected and check for displayed errors or paper jams.","Hardware"
+8,"My laptop is running slowly.","Close unused applications, restart the laptop if possible, and check available storage. Contact IT if the issue continues.","Performance"
+9,"I cannot access an application.","Check that you are using the correct company account and have the required permissions. Contact IT to request access if necessary.","Access"
+10,"My MFA code is not working.","Check your device time and use the latest verification code. Never share MFA codes. Contact IT through the approved verification process if the issue continues.","Security"
+11,"The computer will not start.","Check the power connection and charger. If the computer repeatedly fails to start, contact IT support.","Hardware"
+12,"How do I report a new IT issue?","Create a support ticket with a clear title and description. Include the error message, affected device, start time, and business impact. Never include passwords.","Support"
