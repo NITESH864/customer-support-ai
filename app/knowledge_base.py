@@ -1,22 +1,12 @@
-
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-
-# --------------------------------------------------
-# 1. Find the knowledge base CSV file
-# --------------------------------------------------
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 KNOWLEDGE_BASE_PATH = BASE_DIR / "data" / "knowledge_base.csv"
-
-
-# --------------------------------------------------
-# 2. Load and validate knowledge base
-# --------------------------------------------------
 
 if not KNOWLEDGE_BASE_PATH.exists():
     raise FileNotFoundError(
@@ -29,8 +19,7 @@ required_columns = {"question", "answer", "category"}
 
 if not required_columns.issubset(knowledge_df.columns):
     raise ValueError(
-        "knowledge_base.csv must contain: "
-        "question, answer, category"
+        "knowledge_base.csv must contain: question, answer, category"
     )
 
 knowledge_df = knowledge_df.dropna(
@@ -51,41 +40,22 @@ knowledge_df = knowledge_df[
 if knowledge_df.empty:
     raise ValueError("The knowledge base contains no valid records.")
 
-
-# --------------------------------------------------
-# 3. Load sentence embedding model
-# --------------------------------------------------
-
-print("Loading semantic search model...")
-
-embedding_model = SentenceTransformer(
-    "sentence-transformers/all-MiniLM-L6-v2"
-)
-
-
-# --------------------------------------------------
-# 4. Convert knowledge base text into embeddings
-# --------------------------------------------------
+print("Preparing lightweight TF-IDF search...")
 
 knowledge_texts = (
     knowledge_df["question"] + " " + knowledge_df["answer"]
 ).tolist()
 
-knowledge_embeddings = embedding_model.encode(
-    knowledge_texts,
-    convert_to_numpy=True,
-    normalize_embeddings=True,
-    show_progress_bar=False
+vectorizer = TfidfVectorizer(
+    lowercase=True,
+    stop_words="english",
+    ngram_range=(1, 2)
 )
 
-print(
-    f"Knowledge base loaded: {len(knowledge_df)} articles."
-)
+knowledge_matrix = vectorizer.fit_transform(knowledge_texts)
 
+print(f"Knowledge base loaded: {len(knowledge_df)} articles.")
 
-# --------------------------------------------------
-# 5. Search relevant knowledge base articles
-# --------------------------------------------------
 
 def search_knowledge_base(query: str, top_k: int = 3) -> list[dict]:
     if not query or not query.strip():
@@ -94,18 +64,12 @@ def search_knowledge_base(query: str, top_k: int = 3) -> list[dict]:
     if not 1 <= top_k <= 10:
         raise ValueError("top_k must be between 1 and 10.")
 
-    # Convert user's query into an embedding
-    query_embedding = embedding_model.encode(
-        [query.strip()],
-        convert_to_numpy=True,
-        normalize_embeddings=True,
-        show_progress_bar=False
-    )[0]
+    query_vector = vectorizer.transform([query.strip()])
 
-    # Calculate semantic similarity
-    scores = knowledge_embeddings @ query_embedding
+    scores = (
+        knowledge_matrix @ query_vector.T
+    ).toarray().ravel()
 
-    # Get indices of the most similar articles
     best_indices = np.argsort(scores)[::-1][:top_k]
 
     results = []
