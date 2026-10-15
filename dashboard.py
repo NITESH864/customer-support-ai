@@ -106,6 +106,22 @@ st.markdown(
         border-radius: 10px !important;
       }
       [data-testid="stTextArea"] textarea { line-height: 1.55; }
+             /* Make typed text clearly visible in input fields */
+      [data-testid="stTextInput"] input,
+      [data-testid="stTextArea"] textarea {
+        color: #172033 !important;
+        -webkit-text-fill-color: #172033 !important;
+        background-color: #ffffff !important;
+        caret-color: #172033 !important;
+        opacity: 1 !important;
+      }
+
+      [data-testid="stTextInput"] input::placeholder,
+      [data-testid="stTextArea"] textarea::placeholder {
+        color: #7b879b !important;
+        -webkit-text-fill-color: #7b879b !important;
+        opacity: 1 !important;
+      }
       .stButton button, .stDownloadButton button, [data-testid="stFormSubmitButton"] button {
         border-radius: 10px; font-weight: 700; min-height: 2.65rem;
         transition: transform .12s ease, box-shadow .12s ease;
