@@ -10,7 +10,7 @@ load_dotenv(BASE_DIR / ".env")
 
 # TF-IDF similarity scores are generally lower than embedding-based search.
 # This is a simple heuristic, not a calibrated relevance threshold.
-MIN_RELEVANCE_SCORE = 0.05
+MIN_RELEVANCE_SCORE = 0.65
 
 
 def _build_knowledge_base_fallback(
