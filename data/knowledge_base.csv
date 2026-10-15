@@ -11,3 +11,4 @@ id,question,answer,category
 10,"My MFA code is not working.","Check your device time and use the latest verification code. Never share MFA codes. Contact IT through the approved verification process if the issue continues.","Security"
 11,"The computer will not start.","Check the power connection and charger. If the computer repeatedly fails to start, contact IT support.","Hardware"
 12,"How do I report a new IT issue?","Create a support ticket with a clear title and description. Include the error message, affected device, start time, and business impact. Never include passwords.","Support"
+13,"My laptop exhaust fan is not working.","If the laptop is overheating, shut it down and disconnect the charger. Keep the air vents unobstructed. Do not open the device unless authorized. Contact IT support to inspect the cooling fan. If there is smoke or a burning smell, stop using the laptop and escalate immediately.",Hardware
