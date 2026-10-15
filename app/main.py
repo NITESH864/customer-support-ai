@@ -8,8 +8,10 @@ from .knowledge_base import search_knowledge_base
 from .database import get_connection, init_db
 from .schemas import TicketCreate, TicketPredictionResponse, TicketResponse
 from .sentiment import analyze_sentiment
-from .response_generator import generate_support_response
-
+from .response_generator import (
+    MIN_RELEVANCE_SCORE,
+    generate_support_response,
+)
 # --------------------------------------------------
 # 1. Project paths
 # --------------------------------------------------
@@ -386,7 +388,7 @@ def draft_support_response(
         relevant_sources = [
             article
             for article in articles
-            if article["similarity_score"] >= 0.35
+            if article["similarity_score"] >= MIN_RELEVANCE_SCORE
         ]
 
         return {

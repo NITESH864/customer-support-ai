@@ -8,10 +8,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN python -m pip install --upgrade pip
-
-RUN python -m pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu
-RUN python -m pip install --verbose --timeout 30 --retries 2 -r requirements.txt
+RUN python -m pip install --upgrade pip \
+    && python -m pip install -r requirements.txt
 
 COPY . .
 
